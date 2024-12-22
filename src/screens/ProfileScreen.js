@@ -1,30 +1,20 @@
 import React from 'react';
-import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
+import StatsGrid from '../components/StatsGrid';
+import Achievements from '../components/Achievements';
 
-const ProfileScreen = ({ navigation }) => {
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Profile</Text>
-        {/* Profile content will go here */}
-      </View>
-    </ScrollView>
-  );
-};
+const ProfileScreen = () => (
+  <div className="space-y-6">
+    <div className="flex items-center">
+      <div className="w-16 h-16 bg-gray-200 rounded-full"></div>
+      <div className="ml-4">
+        <h2 className="text-xl font-bold">Alex Chen</h2>
+        <p className="text-gray-500">Cornell University</p>
+      </div>
+    </div>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  header: {
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-});
+    <StatsGrid />
+    <Achievements />
+  </div>
+);
 
 export default ProfileScreen;
