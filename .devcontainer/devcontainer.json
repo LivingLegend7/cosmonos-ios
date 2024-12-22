@@ -1,11 +1,29 @@
 {
-  "name": "Cosmonos iOS Preview",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
-  "forwardPorts": [3000],
+  "name": "Cosmonos iOS Development",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/ruby:1": {}
+  },
+  "forwardPorts": [3000, 8081],
+  "portsAttributes": {
+    "3000": {
+      "label": "Web Preview",
+      "onAutoForward": "notify"
+    },
+    "8081": {
+      "label": "Metro Bundler",
+      "onAutoForward": "notify"
+    }
+  },
   "postCreateCommand": "npm install",
   "customizations": {
     "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint"]
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "msjsdiag.vscode-react-native",
+        "dsznajder.es7-react-js-snippets"
+      ]
     }
   }
 }
