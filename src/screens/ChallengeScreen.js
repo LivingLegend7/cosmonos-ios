@@ -1,31 +1,36 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import DailyChallenge from '../components/DailyChallenge';
+import QuestionCard from '../components/QuestionCard';
+import ChallengeComplete from '../components/ChallengeComplete';
 
-const ChallengeScreen = ({ navigation }) => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+const ChallengeScreen = () => {
+  const [challengeComplete, setChallengeComplete] = useState(false);
   const [score, setScore] = useState(0);
 
-  // Component logic will go here
+  const handleChallengeComplete = (finalScore) => {
+    setScore(finalScore);
+    setChallengeComplete(true);
+  };
+
+  const handleRestart = () => {
+    setChallengeComplete(false);
+    setScore(0);
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Daily Challenge</Text>
-      {/* Challenge content will go here */}
-    </View>
+    <div className="space-y-4">
+      <DailyChallenge />
+      {!challengeComplete ? (
+        <QuestionCard onComplete={handleChallengeComplete} />
+      ) : (
+        <ChallengeComplete 
+          score={score}
+          totalQuestions={3}
+          onRestart={handleRestart}
+        />
+      )}
+    </div>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-});
 
 export default ChallengeScreen;
